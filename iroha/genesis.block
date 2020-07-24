@@ -1,0 +1,114 @@
+{
+  "block_v1": {
+    "payload": {
+      "transactions": [
+        {
+          "payload": {
+            "reducedPayload": {
+              "commands": [
+                {
+                  "addPeer": {
+                    "peer": {
+                      "address": "localhost:10001",
+                      "peerKey": "964a46a822f4a37b8bd841a53b77296461a66a46fe57d6f319df14e30a5aa28d"
+                    }
+                  }
+                },
+                {
+                  "createRole": {
+                    "roleName": "Company",
+                    "permissions": [
+                      "can_transfer",
+                      "can_get_domain_acc_detail",
+                      "can_get_domain_accounts",
+                      "can_get_my_acc_detail",
+                      "can_get_my_account",
+                      "can_get_domain_acc_ast",
+                      "can_get_my_acc_ast",
+                      "can_get_my_acc_ast_txs",
+                      "can_get_peers"
+                    ]
+                  }
+                },
+                {
+                  "createRole": {
+                    "roleName": "SkillMaker",
+                    "permissions": [
+                      "can_create_asset",
+                      "can_add_asset_qty",
+                      "can_subtract_asset_qty"
+                    ]
+                  }
+                },
+                {
+                  "createRole": {
+                    "roleName": "Orchestrator",
+                    "permissions": [
+                      "can_create_account",
+                      "can_create_domain",
+                      "can_add_peer",
+                      "can_remove_peer",
+                      "can_append_role",
+                      "can_create_role",
+                      "can_detach_role",
+                      "can_get_all_signatories"
+                    ]
+                  }
+                },
+                {
+                  "createRole": {
+                    "roleName": "Developer",
+                    "permissions": [
+                      "can_receive",
+                      "can_get_my_acc_detail",
+                      "can_get_my_account",
+                      "can_get_my_acc_ast",
+                      "can_get_my_acc_ast_txs",
+                      "can_get_my_acc_txs",
+                      "can_get_my_txs"
+                    ]
+                  }
+                },
+                {
+                  "createDomain": {
+                    "domainId": "Instrumentality",
+                    "defaultRole": "Developer"
+                  }
+                },
+                {
+                  "createAccount": {
+                    "accountName": "alexandru_balan",
+                    "domainId": "Instrumentality",
+                    "publicKey": "3fdaadfdfd373b670e9f08c62b082d96c0338a6d68f3927e772a26f2c9793d0b"
+                  }
+                },
+                {
+                  "appendRole": {
+                    "accountId": "alexandru_balan@Instrumentality",
+                    "roleName": "Orchestrator"
+                  }
+                },
+                {
+                  "appendRole": {
+                    "accountId": "alexandru_balan@Instrumentality",
+                    "roleName": "SkillMaker"
+                  }
+                },
+                {
+                  "appendRole": {
+                    "accountId": "alexandru_balan@Instrumentality",
+                    "roleName": "Company"
+                  }
+                }
+              ],
+              "quorum": 1
+            }
+          }
+        }
+      ],
+      "txNumber": 1,
+      "height": "1",
+      "prevBlockHash": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

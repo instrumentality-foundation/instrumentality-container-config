@@ -1,0 +1,76 @@
+version: "3.8"
+
+# Orchestrating the instrumentality services
+services:
+
+    # Landing site that has authentication capabilities
+    sonata:
+        image: instrumentalityfoundation/landing:latest
+        restart: always
+        ports:
+            - "8080:8080"
+        networks:
+            - instrumentality
+
+    # Main application
+    overture:
+        image: instrumentalityfoundation/mainapp:latest
+        restart: always
+        ports: 
+            - "8000:8000"
+        networks:
+            - instrumentality
+
+    # Blockchain API
+    minuet:
+        image: instrumentalityfoundation/api:latest
+        restart: always
+        ports:
+            - "9000:9000"
+        networks:
+            - instrumentality
+            - instrumentality-blockchain
+        volumes:
+            - "./private:/blockchain/private"
+    
+    # PostgreSQL Database for Iroha
+    scherzo:
+        image: library/postgres:latest
+        restart: always
+        expose:
+            - "5432"
+        networks:
+            - instrumentality-blockchain
+        environment:
+            - POSTGRES_USER=orchestrator
+            - POSTGRES_PASSWORD=instrumentality-test-pass
+            - POSTGRES_DB=instrumentality
+        depends_on:
+            - minuet
+    
+    # Iroha container
+    rondo:
+        image: hyperledger/iroha:latest
+        restart: always
+        expose:
+            - "50051"
+        networks:
+            - instrumentality-blockchain
+        volumes:
+            - "./iroha:/opt/iroha_data"
+            - "blockstore:/tmp/block_store"
+        environment:
+            - IROHA_POSTGRES_HOST=scherzo
+            - POSTGRES_PORT=5432
+            - POSTGRES_PASSWORD=instrumentality-test-pass
+            - POSTGRES_USER=orchestrator
+            - KEY=genesisNode
+        depends_on:
+            - scherzo
+        
+networks:
+    instrumentality:
+    instrumentality-blockchain:
+
+volumes:
+    blockstore:
