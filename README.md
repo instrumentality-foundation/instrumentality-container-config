@@ -12,6 +12,11 @@ ed25519/sha3 keys compatible with iroha, example of private configs for python A
 2. `cd instrumentality-container-config`
 3. `docker-compose -f docker-orchestra.yaml up`
 
+## How to stop the containers
+
+1. Press `CTRL + C` to stop containers then run
+2. `docker-compose -f docker-orchestra.yaml down` to delete them and the created networks.
+
 ## Batteries included
 
 Inside you'll find:
