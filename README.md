@@ -16,9 +16,9 @@ ed25519/sha3 keys compatible with iroha, example of private configs for python A
 
 Inside you'll find:
 
-- **Sonata:** The landing site of Instrumentality: running on [localhost:8080](localhost:8080)
-- **Overture:** The main app (aka. Instrumentality): running on [localhost:8000](localhost:8000)
-- **Minuet:** The Python(Flask) API responsible for communicating with the Iroha ledger: running on [localhost:9000](localhost:9000)
+- **Sonata:** The landing site of Instrumentality: running on [localhost:8080](http://localhost:8080)
+- **Overture:** The main app (aka. Instrumentality): running on [localhost:8000](http://localhost:8000)
+- **Minuet:** The Python(Flask) API responsible for communicating with the Iroha ledger: running on [localhost:9000](http://localhost:9000)
 - **Scherzo:** A PostgreSQL database used by Iroha to store data. Communicates only with **Minuet** and **Rondo**
 - **Rondo:** The Hyperledger Iroha distributed ledger. Communicates only with **Minuet** and **Scherzo**.
 
