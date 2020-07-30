@@ -5,19 +5,10 @@ services:
 
     # Landing site that has authentication capabilities
     sonata:
-        image: instrumentalityfoundation/landing:latest
+        image: instrumentalityfoundation/instrumentality:latest
         restart: always
         ports:
             - "8080:8080"
-        networks:
-            - instrumentality
-
-    # Main application
-    overture:
-        image: instrumentalityfoundation/mainapp:latest
-        restart: always
-        ports: 
-            - "8000:8000"
         networks:
             - instrumentality
 
@@ -30,6 +21,7 @@ services:
         networks:
             - instrumentality
             - instrumentality-blockchain
+            - instrumentality-redis
         volumes:
             - "./private:/blockchain/private"
     
@@ -67,10 +59,26 @@ services:
             - KEY=genesisNode
         depends_on:
             - scherzo
+
+    # Redis service
+    requiem:
+        image: redis:alpine
+        command: ["redis-server", "--appendonly", "yes"]
+        expose:
+            - "6379"
+        hostname: redis
+        networks:
+            - instrumentality-redis
+        volumes:
+            - redis-data:/data
+        depends_on:
+            - minuet
         
 networks:
     instrumentality:
     instrumentality-blockchain:
+    instrumentality-redis:
 
 volumes:
     blockstore:
+    redis-data:
